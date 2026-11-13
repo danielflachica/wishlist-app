@@ -5,8 +5,11 @@ export const extractNameFromSlug = (slug: string): string => {
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 };
 
-export const copyUrlToClipboard = async (
-  url: string = window.location.href,
-): Promise<void> => {
-  await navigator.clipboard.writeText(url);
+export const copyToClipboard = async (text: string): Promise<boolean> => {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
 };

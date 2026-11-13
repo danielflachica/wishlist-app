@@ -1,11 +1,22 @@
 import { useParams } from "react-router";
 import Page from "@/components/Page";
 import { Button, Heading } from "@chakra-ui/react";
-import { extractNameFromSlug } from "../utils/utils";
+import { copyToClipboard, extractNameFromSlug } from "../utils/utils";
 
 const MyListPage = () => {
-  const { slug: userSlug } = useParams();
-  const userName = extractNameFromSlug(userSlug || "");
+  const { slug } = useParams();
+  const userName = extractNameFromSlug(slug || "");
+
+  async function handleShareClick() {
+    const link = `${window.location.origin}/list/${slug}`;
+    const copied = await copyToClipboard(link);
+
+    if (copied) {
+      alert("Link copied to clipboard. Share it with your friends!");
+    } else {
+      window.prompt("Copy this link and share it with your friends:", link);
+    }
+  }
 
   return (
     <Page>
@@ -13,7 +24,7 @@ const MyListPage = () => {
         {userName.endsWith("s") ? `${userName}'` : `${userName}'s`} wishlist
       </Heading>
 
-      <Button w="full" variant="outline">
+      <Button w="full" variant="outline" onClick={handleShareClick}>
         Share my list
       </Button>
     </Page>
