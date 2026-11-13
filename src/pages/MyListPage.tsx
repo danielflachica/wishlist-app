@@ -3,7 +3,8 @@ import Page from "@/components/Page";
 import { Button, Heading, Tabs } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
 import { copyToClipboard, extractNameFromSlug } from "../utils/utils";
-import Wishlist from "@/components/Wishlist";
+import WishList from "@/components/WishList";
+import UserList from "@/components/UserList";
 
 const MyListPage = () => {
   const { slug } = useParams();
@@ -38,12 +39,14 @@ const MyListPage = () => {
         <Tabs.Content value="mine">
           <Button asChild w="full">
             <RouterLink to={`${window.location.origin}/u/${slug}/wish/new`}>
-              Add wish
+              Add a wish
             </RouterLink>
           </Button>
-          <Wishlist user={slug ?? ""} />
+          <WishList user={slug ?? ""} />
         </Tabs.Content>
-        <Tabs.Content value="everyone">View everyone's list</Tabs.Content>
+        <Tabs.Content value="everyone">
+          <UserList user={slug ?? ""} />
+        </Tabs.Content>
       </Tabs.Root>
     </Page>
   );
