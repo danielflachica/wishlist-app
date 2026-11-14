@@ -1,7 +1,7 @@
 import Page from "@/components/Page";
 import UserList from "@/components/UserList";
 import WishList from "@/components/WishList";
-import useListContext from "@/hooks/UseListContext";
+import useListContext from "@/hooks/useListContext";
 import { extractNameFromSlug, handleShareClick } from "@/utils/utils";
 import { Button, Heading, Tabs } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
