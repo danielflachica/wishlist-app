@@ -13,17 +13,19 @@ const UserList = ({ user }: Props) => {
   ];
   return (
     <Stack align="flex-start" gap="1rem" w="full">
-      {users.map((user: { id: number; name: string; slug: string }) => (
+      {users.map((owner: { id: number; name: string; slug: string }) => (
         <Button
-          key={user.id}
+          key={owner.id}
           asChild
           variant="outline"
           justifyContent="flex-start"
           py={6}
           w="full"
         >
-          <RouterLink to={`${window.location.origin}/list/${user.slug}`}>
-            {user.name}
+          <RouterLink
+            to={`${window.location.origin}/list/${owner.slug}?me=${user}`}
+          >
+            {owner.name}
           </RouterLink>
         </Button>
       ))}

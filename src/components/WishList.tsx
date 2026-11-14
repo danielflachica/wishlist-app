@@ -1,10 +1,10 @@
 import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
 
 interface Props {
-  user: string;
+  owner: string;
 }
 
-const WishList = ({ user }: Props) => {
+const WishList = ({ owner }: Props) => {
   const wishlistItems = [
     {
       id: 1,
@@ -24,7 +24,7 @@ const WishList = ({ user }: Props) => {
   return (
     <Stack w="full" gap="1rem" my="1rem">
       {wishlistItems.map((wish) => (
-        <Box key={user + wish.id} p={4} borderWidth="1px" borderRadius="md">
+        <Box key={owner + wish.id} p={4} borderWidth="1px" borderRadius="md">
           <Stack>
             <Heading size="md" fontWeight="bold">
               {wish.item}
