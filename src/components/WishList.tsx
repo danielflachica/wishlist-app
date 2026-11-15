@@ -1,3 +1,4 @@
+import useWishlist from "@/hooks/useWishlist";
 import type { Mode } from "@/types/Mode";
 import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
@@ -9,22 +10,7 @@ interface Props {
 
 const WishList = ({ owner, mode }: Props) => {
   const navigate = useNavigate();
-
-  const wishlistItems = [
-    {
-      id: 1,
-      item: "Wool Socks, Size M",
-      link: "shop.com",
-      note: "gray or navy",
-    },
-    {
-      id: 2,
-      item: "Ceramic Pour Over Set",
-      link: "www.kinto.com",
-      note: "White, 2 cups",
-    },
-    { id: 3, item: "The Overstory", link: "", note: "Paperback is fine" },
-  ];
+  const { items, error, loading } = useWishlist();
 
   const handleClick = (id: number) => {
     navigate(`/u/${owner}/wish/edit/${id}`);
@@ -32,7 +18,7 @@ const WishList = ({ owner, mode }: Props) => {
 
   return (
     <Stack w="full" gap="1rem" my="1rem">
-      {wishlistItems.map((wish) => (
+      {items.map((wish) => (
         <Box
           key={owner + wish.id}
           p={4}
