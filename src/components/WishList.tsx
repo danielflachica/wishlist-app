@@ -10,7 +10,7 @@ interface Props {
 
 const WishList = ({ owner, mode }: Props) => {
   const navigate = useNavigate();
-  const { items, error, loading } = useWishlist();
+  const { items, error, loading } = useWishlist(owner ?? "");
 
   const handleClick = (id: number) => {
     navigate(`/u/${owner}/wish/edit/${id}`);

@@ -1,8 +1,8 @@
 import wishlistService from "@/services/wishlistService";
-import type { Item } from "@/types/Item";
+import type { Item, NewItem } from "@/types/Item";
 import { useEffect, useState } from "react";
 
-const useWishlist = () => {
+const useWishlist = (owner: string) => {
   const [items, setItems] = useState<Item[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,11 +13,11 @@ const useWishlist = () => {
   }, []);
 
   const fetchItems = async () => {
-    setError("");
     setLoading(true);
+    setError("");
 
     try {
-      const wishlistItems = await wishlistService.getAll();
+      const wishlistItems = await wishlistService.getAll(owner);
       setItems(wishlistItems);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -26,7 +26,21 @@ const useWishlist = () => {
     }
   };
 
-  return { items, error, loading };
+  const addItem = async (item: NewItem) => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const newItem = await wishlistService.create(item);
+      setItems([newItem, ...items]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { items, error, loading, addItem };
 };
 
 export default useWishlist;

@@ -8,10 +8,11 @@ class SupabaseService<TApp extends Item> {
     this.table = table;
   }
 
-  async getAll(orderBy?: string): Promise<TApp[]> {
+  async getAll(owner: string, orderBy?: string): Promise<TApp[]> {
     const { data, error } = await supabase
       .from(this.table)
       .select("*")
+      .eq("owner_slug", owner)
       .order(orderBy ?? "id", { ascending: false });
     if (error) throw error;
     return data;
@@ -36,6 +37,7 @@ class SupabaseService<TApp extends Item> {
     if (error) throw error;
     return data;
   }
+
   async update(entity: TApp): Promise<TApp> {
     const { data, error } = await supabase
       .from(this.table)

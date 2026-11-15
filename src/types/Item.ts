@@ -7,3 +7,5 @@ export interface Item {
   is_claimed: boolean;
   updated_at?: Date;
 }
+
+export type NewItem = Omit<Item, "id">;
