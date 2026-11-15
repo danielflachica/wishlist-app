@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import Page from "@/components/Page";
 import UserList from "@/components/UserList";
 import WishList from "@/components/WishList";
@@ -50,12 +51,7 @@ const ViewListPage = () => {
 
       {mode === "viewer" && (
         <>
-          <Button asChild w="full" variant="outline">
-            <RouterLink to={`${window.location.origin}/u/${me}`}>
-              Back to my list
-            </RouterLink>
-          </Button>
-
+          <BackButton to={me ?? ""} />
           <WishList owner={slug ?? ""} />
         </>
       )}

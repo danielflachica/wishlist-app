@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import CreateListPage from "./pages/CreateListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ViewListPage from "./pages/ViewListPage";
+import CreateWishPage from "./pages/CreateWishPage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route path="/" element={<CreateListPage />}></Route>
       <Route path="/u/:user" element={<ViewListPage />}></Route>
       <Route path="/list/:owner" element={<ViewListPage />}></Route>
+      <Route path="/u/:user/wish/new" element={<CreateWishPage />}></Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
