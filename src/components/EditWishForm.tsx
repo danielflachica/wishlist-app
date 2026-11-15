@@ -3,11 +3,12 @@ import type { Item } from "@/types/Item";
 import { Badge, Button, Field, Input, Stack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import FormSkeleton from "./FormSkeleton";
 
 const EditWishForm = () => {
-  const { id } = useParams();
-  const { item, editItem } = useWishlistItem(parseInt(id ?? ""));
+  const { user, id } = useParams();
+  const { item, loading, editItem } = useWishlistItem(parseInt(id ?? ""));
   const {
     register,
     handleSubmit,
@@ -20,16 +21,19 @@ const EditWishForm = () => {
       is_claimed: false,
     },
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (item) reset(item);
   }, [item, reset]);
 
   const onUpdate = (item: Item) => {
-    console.log(item);
     editItem(item);
     reset();
+    navigate(`/u/${user}`);
   };
+
+  if (loading) return <FormSkeleton />;
 
   return (
     <form id="edit-wish-form" onSubmit={handleSubmit(onUpdate)}>

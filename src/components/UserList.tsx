@@ -11,6 +11,9 @@ const UserList = ({ user }: Props) => {
     { id: 2, name: "Ana", slug: "ana" },
     { id: 3, name: "John", slug: "john" },
   ];
+
+  // if (!loading && (!users || users.length === 0)) return <NoRecordsFound />;
+
   return (
     <Stack align="flex-start" gap="1rem" w="full">
       {users.map((owner: { id: number; name: string; slug: string }) => (

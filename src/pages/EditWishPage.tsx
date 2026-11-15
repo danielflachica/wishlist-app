@@ -4,7 +4,7 @@ import Page from "@/components/Page";
 import useListContext from "@/hooks/useListContext";
 
 const EditWishPage = () => {
-  const { slug, me, mode } = useListContext();
+  const { me } = useListContext();
 
   return (
     <Page title="Edit wish">

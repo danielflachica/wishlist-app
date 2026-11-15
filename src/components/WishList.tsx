@@ -2,6 +2,8 @@ import useWishlist from "@/hooks/useWishlist";
 import type { Mode } from "@/types/Mode";
 import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
+import WishListSkeleton from "./WishListSkeleton";
+import NoRecordsFound from "./NoRecordsFound";
 
 interface Props {
   owner: string;
@@ -16,8 +18,12 @@ const WishList = ({ owner, mode }: Props) => {
     navigate(`/u/${owner}/wish/edit/${id}`);
   };
 
+  if (!loading && (!items || items.length === 0)) return <NoRecordsFound />;
+
   return (
     <Stack w="full" gap="1rem" my="1rem">
+      {loading && <WishListSkeleton />}
+
       {items.map((wish) => (
         <Box
           key={owner + wish.id}
