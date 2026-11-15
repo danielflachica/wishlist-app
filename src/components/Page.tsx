@@ -23,7 +23,7 @@ const Page = ({
       p="2rem"
     >
       <Container maxW="400px" p={0}>
-        <Stack align="flex-start" gap="1rem" w="full">
+        <Stack align="stretch" gap="1rem" w="full">
           <Heading size="4xl" fontWeight="bold" mb={0}>
             {title}
           </Heading>
