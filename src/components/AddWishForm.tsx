@@ -14,7 +14,7 @@ const AddWishForm = () => {
     formState: { errors },
   } = useForm<NewItem>();
 
-  const onSubmit = (data: NewItem) => {
+  const onCreate = (data: NewItem) => {
     const newItem: NewItem = {
       ...data,
       owner_slug: user || "",
@@ -25,7 +25,7 @@ const AddWishForm = () => {
   };
 
   return (
-    <form id="add-wish-form" onSubmit={handleSubmit(onSubmit)}>
+    <form id="add-wish-form" onSubmit={handleSubmit(onCreate)}>
       <Stack align="stretch" gap="1rem" w="full">
         <Field.Root required invalid={!!errors.item}>
           <Field.Label>
