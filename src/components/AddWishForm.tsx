@@ -1,11 +1,9 @@
 import { Badge, Button, Field, Input, Stack } from "@chakra-ui/react";
-import BackButton from "./BackButton";
+import { useParams } from "react-router";
 
-interface Props {
-  user: string;
-}
+const AddWishForm = () => {
+  const { user } = useParams();
 
-const AddWishForm = ({ user }: Props) => {
   return (
     <form id="add-wish-form">
       <Stack align="stretch" gap="1rem" w="full">
@@ -50,7 +48,6 @@ const AddWishForm = ({ user }: Props) => {
         </Field.Root>
 
         <Button type="submit">Add wish</Button>
-        <BackButton to={user} />
       </Stack>
     </form>
   );
