@@ -1,14 +1,6 @@
 import { useRef, useState } from "react";
 import Page from "@/components/Page";
-import {
-  Button,
-  Code,
-  Field,
-  Heading,
-  Input,
-  Link,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Code, Field, Input, Link, Text } from "@chakra-ui/react";
 
 function CreateListPage() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -28,10 +20,7 @@ function CreateListPage() {
   };
 
   return (
-    <Page align="center" justify="center">
-      <Heading size="4xl" fontWeight="bold" mb={0}>
-        Christmas wishlist
-      </Heading>
+    <Page title="Christmas wishlist" align="center" justify="center">
       <Text textAlign="left">Make a list. Share the link. Get your gifts.</Text>
 
       <Field.Root>

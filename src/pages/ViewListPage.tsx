@@ -3,7 +3,7 @@ import UserList from "@/components/UserList";
 import WishList from "@/components/WishList";
 import useListContext from "@/hooks/useListContext";
 import { extractNameFromSlug, handleShareClick } from "@/utils/utils";
-import { Button, Heading, Tabs } from "@chakra-ui/react";
+import { Button, Tabs } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
 
 const ViewListPage = () => {
@@ -11,11 +11,11 @@ const ViewListPage = () => {
   const userName = extractNameFromSlug(slug);
 
   return (
-    <Page>
-      <Heading size="4xl" fontWeight="bold" mb={0}>
-        {userName.endsWith("s") ? `${userName}'` : `${userName}'s`} wishlist
-      </Heading>
-
+    <Page
+      title={
+        userName.endsWith("s") ? `${userName}'` : `${userName}'s` + " wishlist"
+      }
+    >
       {mode === "owner" && (
         <>
           <Button
