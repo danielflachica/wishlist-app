@@ -39,7 +39,7 @@ const ViewListPage = () => {
                   Add a wish
                 </RouterLink>
               </Button>
-              <WishList owner={slug ?? ""} />
+              <WishList owner={slug ?? ""} mode={mode} />
             </Tabs.Content>
 
             <Tabs.Content value="everyone">
@@ -52,11 +52,11 @@ const ViewListPage = () => {
       {mode === "viewer" && (
         <>
           <BackButton to={me ?? ""} />
-          <WishList owner={slug ?? ""} />
+          <WishList owner={slug ?? ""} mode={mode} />
         </>
       )}
 
-      {mode === "public" && <WishList owner={slug ?? ""} />}
+      {mode === "public" && <WishList owner={slug ?? ""} mode={mode} />}
 
       <ul>
         <li>slug: {slug}</li>

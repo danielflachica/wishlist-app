@@ -1,10 +1,15 @@
+import type { Mode } from "@/types/Mode";
 import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 
 interface Props {
   owner: string;
+  mode: Mode;
 }
 
-const WishList = ({ owner }: Props) => {
+const WishList = ({ owner, mode }: Props) => {
+  const navigate = useNavigate();
+
   const wishlistItems = [
     {
       id: 1,
@@ -21,10 +26,21 @@ const WishList = ({ owner }: Props) => {
     { id: 3, item: "The Overstory", link: "", note: "Paperback is fine" },
   ];
 
+  const handleClick = (id: number) => {
+    navigate(`/u/${owner}/wish/edit/${id}`);
+  };
+
   return (
     <Stack w="full" gap="1rem" my="1rem">
       {wishlistItems.map((wish) => (
-        <Box key={owner + wish.id} p={4} borderWidth="1px" borderRadius="md">
+        <Box
+          key={owner + wish.id}
+          p={4}
+          borderWidth="1px"
+          borderRadius="md"
+          onClick={() => mode === "owner" && handleClick(wish.id)}
+          cursor={mode === "owner" ? "pointer" : "default"}
+        >
           <Stack>
             <Heading size="md" fontWeight="bold">
               {wish.item}
@@ -44,6 +60,7 @@ const WishList = ({ owner }: Props) => {
                 fontSize="sm"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
               >
                 {wish.link}
               </Link>
