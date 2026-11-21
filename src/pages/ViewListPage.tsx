@@ -7,11 +7,14 @@ import useWishlist from "@/hooks/useWishlist";
 import { extractNameFromSlug, handleShareClick } from "@/utils/utils";
 import { Button, HStack, Tabs } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
+import ErrorPage from "./ErrorPage";
 
 const ViewListPage = () => {
   const { slug, me, mode } = useListContext();
   const { items, error, loading, removeItem } = useWishlist(slug ?? "");
   const userName = extractNameFromSlug(slug);
+
+  if (error) return <ErrorPage />;
 
   return (
     <Page
