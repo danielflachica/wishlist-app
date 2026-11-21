@@ -7,19 +7,18 @@ interface Props {
 
 const BackButton = ({ slug }: Props) => {
   const navigate = useNavigate();
-  const LABEL = "Back to my list";
 
   if (slug) {
     return (
       <Button asChild w="full" variant="outline">
-        <RouterLink to={`/u/${slug}`}>{LABEL}</RouterLink>
+        <RouterLink to={`/u/${slug}`}>Back to my list</RouterLink>
       </Button>
     );
   }
 
   return (
     <Button w="full" variant="outline" onClick={() => navigate(-1)}>
-      {LABEL}
+      Back
     </Button>
   );
 };

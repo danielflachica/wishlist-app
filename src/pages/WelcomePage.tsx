@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link as RouterLink, useNavigate } from "react-router";
 import Page from "@/components/Page";
 import { slugify } from "@/utils/utils";
-import { Button, Code, Field, Input, Text, Theme } from "@chakra-ui/react";
+import {
+  Button,
+  Code,
+  Field,
+  Input,
+  Link,
+  Text,
+  Theme,
+} from "@chakra-ui/react";
 import Snowfall from "react-snowfall";
 
 function WelcomePage() {
@@ -54,6 +62,15 @@ function WelcomePage() {
             New here? Enter your name and start adding wishes.
             <br />
             Enter the same name to get back to your list.
+          </Text>
+
+          <Text fontSize="sm" color="fg.muted" textAlign="left" mt="4">
+            Want one-tap access?{" "}
+            <Link asChild>
+              <RouterLink to="/install">
+                Add this app to your home screen
+              </RouterLink>
+            </Link>
           </Text>
         </Page>
       </Theme>
