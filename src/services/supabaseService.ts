@@ -18,6 +18,15 @@ class SupabaseService<TApp extends Item> {
     return data;
   }
 
+  async getOwnerSlugs(except?: string): Promise<string[]> {
+    let query = supabase.from(this.table).select("owner_slug");
+    if (except) query = query.neq("owner_slug", except);
+
+    const { data, error } = await query;
+    if (error) throw error;
+    return [...new Set(data.map((row) => row.owner_slug as string))].sort();
+  }
+
   async get(id: number): Promise<TApp> {
     const { data, error } = await supabase
       .from(this.table)

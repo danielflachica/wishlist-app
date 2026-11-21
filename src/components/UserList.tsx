@@ -1,34 +1,33 @@
+import useUser from "@/hooks/useUser";
 import { Button, Stack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
+import NoRecordsFound from "./NoRecordsFound";
+import UserListSkeleton from "./UserListSkeleton";
 
 interface Props {
   user: string;
 }
 
 const UserList = ({ user }: Props) => {
-  const users = [
-    { id: 1, name: "Ben", slug: "ben" },
-    { id: 2, name: "Ana", slug: "ana" },
-    { id: 3, name: "John", slug: "john" },
-  ];
+  const { users, error, loading } = useUser(user);
 
-  // if (!loading && (!users || users.length === 0)) return <NoRecordsFound />;
+  if (!loading && (!users || users.length === 0)) return <NoRecordsFound />;
 
   return (
     <Stack align="flex-start" gap="1rem" w="full">
-      {users.map((owner: { id: number; name: string; slug: string }) => (
+      {loading && <UserListSkeleton />}
+
+      {users.map((slug) => (
         <Button
-          key={owner.id}
+          key={slug}
           asChild
           variant="outline"
           justifyContent="flex-start"
           py={6}
           w="full"
         >
-          <RouterLink
-            to={`${window.location.origin}/list/${owner.slug}?me=${user}`}
-          >
-            {owner.name}
+          <RouterLink to={`${window.location.origin}/list/${slug}?me=${user}`}>
+            {slug}
           </RouterLink>
         </Button>
       ))}

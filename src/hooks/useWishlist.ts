@@ -7,24 +7,29 @@ const useWishlist = (owner: string) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // fetch wishlist items on first render
+  // fetch wishlist items on first render and whenever the owner changes
   useEffect(() => {
-    fetchItems();
-  }, []);
-
-  const fetchItems = async () => {
+    let active = true;
+    setItems([]); // don't show the previous owner's items while loading
     setLoading(true);
     setError("");
 
-    try {
-      const wishlistItems = await wishlistService.getAll(owner);
-      setItems(wishlistItems);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : String(err));
-    } finally {
-      setLoading(false);
-    }
-  };
+    wishlistService
+      .getAll(owner)
+      .then((data) => {
+        if (active) setItems(data);
+      })
+      .catch((err) => {
+        if (active) setError(err instanceof Error ? err.message : String(err));
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [owner]);
 
   const addItem = async (item: NewItem) => {
     setLoading(true);

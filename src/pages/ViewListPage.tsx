@@ -3,12 +3,14 @@ import Page from "@/components/Page";
 import UserList from "@/components/UserList";
 import WishList from "@/components/WishList";
 import useListContext from "@/hooks/useListContext";
+import useWishlist from "@/hooks/useWishlist";
 import { extractNameFromSlug, handleShareClick } from "@/utils/utils";
 import { Button, Tabs } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
 
 const ViewListPage = () => {
   const { slug, me, mode } = useListContext();
+  const { items, error, loading } = useWishlist(slug ?? "");
   const userName = extractNameFromSlug(slug);
 
   return (
@@ -27,7 +29,13 @@ const ViewListPage = () => {
             Share my list
           </Button>
 
-          <Tabs.Root defaultValue="mine" fitted w="full">
+          <Tabs.Root
+            defaultValue="mine"
+            fitted
+            w="full"
+            lazyMount
+            unmountOnExit
+          >
             <Tabs.List>
               <Tabs.Trigger value="mine">My list</Tabs.Trigger>
               <Tabs.Trigger value="everyone">Everyone</Tabs.Trigger>
@@ -39,7 +47,12 @@ const ViewListPage = () => {
                   Add a wish
                 </RouterLink>
               </Button>
-              <WishList owner={slug ?? ""} mode={mode} />
+              <WishList
+                items={items}
+                owner={slug ?? ""}
+                mode={mode}
+                loading={loading}
+              />
             </Tabs.Content>
 
             <Tabs.Content value="everyone">
@@ -52,11 +65,23 @@ const ViewListPage = () => {
       {mode === "viewer" && (
         <>
           <BackButton to={me ?? ""} />
-          <WishList owner={slug ?? ""} mode={mode} />
+          <WishList
+            items={items}
+            owner={slug ?? ""}
+            mode={mode}
+            loading={loading}
+          />
         </>
       )}
 
-      {mode === "public" && <WishList owner={slug ?? ""} mode={mode} />}
+      {mode === "public" && (
+        <WishList
+          items={items}
+          owner={slug ?? ""}
+          mode={mode}
+          loading={loading}
+        />
+      )}
 
       <ul>
         <li>slug: {slug}</li>

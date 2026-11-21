@@ -1,18 +1,19 @@
-import useWishlist from "@/hooks/useWishlist";
 import type { Mode } from "@/types/Mode";
 import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import WishListSkeleton from "./WishListSkeleton";
 import NoRecordsFound from "./NoRecordsFound";
+import type { Item } from "@/types/Item";
 
 interface Props {
+  items: Item[];
   owner: string;
   mode: Mode;
+  loading: boolean;
 }
 
-const WishList = ({ owner, mode }: Props) => {
+const WishList = ({ items, owner, mode, loading }: Props) => {
   const navigate = useNavigate();
-  const { items, error, loading } = useWishlist(owner ?? "");
 
   const handleClick = (id: number) => {
     navigate(`/u/${owner}/wish/edit/${id}`);
