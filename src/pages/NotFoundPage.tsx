@@ -10,10 +10,11 @@ function NotFoundPage() {
       justify="center"
     >
       <Text textAlign="left" fontSize="xs" color="gray.500">
-        Got lost on your way to the North Pole? Go back{" "}
+        No worries! You can always go back{" "}
         <ChakraLink asChild>
           <RouterLink to="/">home</RouterLink>
         </ChakraLink>
+        .
       </Text>
     </Page>
   );

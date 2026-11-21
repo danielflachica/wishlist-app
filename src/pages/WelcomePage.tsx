@@ -25,15 +25,18 @@ function WelcomePage() {
           onChange={(e) => setName(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && goToList()}
           enterKeyHint="go"
-          placeholder="e.g. Anne, Vice Ganda, or Daniel Pogi"
+          placeholder="e.g. Dips"
         />
         <Field.HelperText>
           {slug ? (
             <>
-              Your list will be at <Code>/u/{slug}</Code>
+              Your list will be at{" "}
+              <Code>
+                {window.location.origin}/u/{slug}
+              </Code>
             </>
           ) : (
-            "Type your name to get started."
+            "Enter your name to get started."
           )}
         </Field.HelperText>
       </Field.Root>

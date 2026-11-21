@@ -19,7 +19,9 @@ const ViewListPage = () => {
   return (
     <Page
       title={
-        userName.endsWith("s") ? `${userName}'` : `${userName}'s` + " wishlist"
+        userName.endsWith("s")
+          ? `${userName}' wishlist`
+          : `${userName}'s wishlist`
       }
     >
       {mode === "owner" && (
