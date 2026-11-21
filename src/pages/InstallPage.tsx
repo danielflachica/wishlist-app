@@ -100,7 +100,7 @@ const InstallPage = () => {
       </Alert.Root>
 
       <Button variant="outline" w="full" onClick={() => navigate(-1)}>
-        Go back
+        Back to my list
       </Button>
     </Page>
   );
