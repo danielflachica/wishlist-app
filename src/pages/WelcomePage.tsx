@@ -27,7 +27,12 @@ function WelcomePage() {
     <>
       <Snowfall style={{ background: "#10302a" }} snowflakeCount={60} />
       <Theme appearance="dark" minH="100dvh">
-        <Page title="Christmas wishlist" align="center" justify="center">
+        <Page
+          title="Christmas wishlist"
+          image="/favicon.svg"
+          align="center"
+          justify="center"
+        >
           <Text>Make a list. Share the link. Get your gifts.</Text>
 
           <Field.Root>
@@ -67,9 +72,7 @@ function WelcomePage() {
           <Text fontSize="sm" color="fg.muted" textAlign="left" mt="4">
             Want one-tap access?{" "}
             <Link asChild>
-              <RouterLink to="/install">
-                Add this app to your home screen
-              </RouterLink>
+              <RouterLink to="/install">Add to home screen</RouterLink>
             </Link>
           </Text>
         </Page>
