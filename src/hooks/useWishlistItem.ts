@@ -44,7 +44,20 @@ const useWishlistItem = (id: number) => {
     }
   };
 
-  return { item, error, loading, editItem };
+  const deleteItem = async (id: number) => {
+    setLoading(true);
+    setError("");
+
+    try {
+      await wishlistService.delete(id);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { item, error, loading, editItem, deleteItem };
 };
 
 export default useWishlistItem;

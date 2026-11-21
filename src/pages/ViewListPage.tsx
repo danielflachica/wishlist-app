@@ -10,7 +10,7 @@ import { Link as RouterLink } from "react-router";
 
 const ViewListPage = () => {
   const { slug, me, mode } = useListContext();
-  const { items, error, loading } = useWishlist(slug ?? "");
+  const { items, error, loading, removeItem } = useWishlist(slug ?? "");
   const userName = extractNameFromSlug(slug);
 
   return (
@@ -52,6 +52,7 @@ const ViewListPage = () => {
                 owner={slug ?? ""}
                 mode={mode}
                 loading={loading}
+                onDelete={removeItem}
               />
             </Tabs.Content>
 

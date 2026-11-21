@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import FormSkeleton from "./FormSkeleton";
+import DeleteWishForm from "./DeleteWishForm";
 
 const EditWishForm = () => {
   const { user, id } = useParams();
@@ -36,54 +37,59 @@ const EditWishForm = () => {
   if (loading) return <FormSkeleton />;
 
   return (
-    <form id="edit-wish-form" onSubmit={handleSubmit(onUpdate)}>
-      <Stack align="stretch" gap="1rem" w="full">
-        <Field.Root required invalid={!!errors.item}>
-          <Field.Label>
-            Item
-            <Field.RequiredIndicator />
-          </Field.Label>
-          <Input {...register("item")} placeholder="Wool socks, size M" />
-          <Field.ErrorText w="full">
-            <Field.ErrorIcon />
-            Please enter an item.
-          </Field.ErrorText>
-        </Field.Root>
+    <>
+      <form id="edit-wish-form" onSubmit={handleSubmit(onUpdate)}>
+        <Stack align="stretch" gap="1rem" w="full">
+          <Field.Root required invalid={!!errors.item}>
+            <Field.Label>
+              Item
+              <Field.RequiredIndicator />
+            </Field.Label>
+            <Input {...register("item")} placeholder="Wool socks, size M" />
+            <Field.ErrorText w="full">
+              <Field.ErrorIcon />
+              Please enter an item.
+            </Field.ErrorText>
+          </Field.Root>
 
-        <Field.Root invalid={!!errors.link}>
-          <Field.Label>
-            Link
-            <Field.RequiredIndicator
-              fallback={
-                <Badge size="xs" variant="surface">
-                  Optional
-                </Badge>
-              }
-            />
-          </Field.Label>
-          <Input {...register("link")} placeholder="shopee.com/socks" />
-        </Field.Root>
+          <Field.Root invalid={!!errors.link}>
+            <Field.Label>
+              Link
+              <Field.RequiredIndicator
+                fallback={
+                  <Badge size="xs" variant="surface">
+                    Optional
+                  </Badge>
+                }
+              />
+            </Field.Label>
+            <Input {...register("link")} placeholder="shopee.com/socks" />
+          </Field.Root>
 
-        <Field.Root invalid={!!errors.note}>
-          <Field.Label>
-            Note
-            <Field.RequiredIndicator
-              fallback={
-                <Badge size="xs" variant="surface">
-                  Optional
-                </Badge>
-              }
-            />
-          </Field.Label>
-          <Input {...register("note")} placeholder="Navy or white" />
-        </Field.Root>
+          <Field.Root invalid={!!errors.note}>
+            <Field.Label>
+              Note
+              <Field.RequiredIndicator
+                fallback={
+                  <Badge size="xs" variant="surface">
+                    Optional
+                  </Badge>
+                }
+              />
+            </Field.Label>
+            <Input {...register("note")} placeholder="Navy or white" />
+          </Field.Root>
 
-        <Button type="submit">Save changes</Button>
-        <Button type="button" variant="outline" colorPalette="red">
-          Delete wish
-        </Button>
-      </Stack>
-    </form>
+          <Button type="submit">Save changes</Button>
+        </Stack>
+      </form>
+
+      <DeleteWishForm
+        id={parseInt(id ?? "")}
+        user={user ?? ""}
+        btnText="Delete Wish"
+      ></DeleteWishForm>
+    </>
   );
 };
 
