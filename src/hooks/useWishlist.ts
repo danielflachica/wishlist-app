@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const useWishlist = (owner: string) => {
   const [items, setItems] = useState<Item[]>([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // fetch wishlist items on first render and whenever the owner changes
   useEffect(() => {

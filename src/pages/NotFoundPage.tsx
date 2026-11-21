@@ -9,7 +9,7 @@ function NotFoundPage() {
       align="center"
       justify="center"
     >
-      <Text textAlign="left" fontSize="xs" color="gray.500">
+      <Text textAlign="left" color="gray.500">
         No worries! You can always go back{" "}
         <ChakraLink asChild>
           <RouterLink to="/">home</RouterLink>

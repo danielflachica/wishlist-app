@@ -40,13 +40,7 @@ const ViewListPage = () => {
             </Button>
           </HStack>
 
-          <Tabs.Root
-            defaultValue="mine"
-            fitted
-            w="full"
-            lazyMount
-            unmountOnExit
-          >
+          <Tabs.Root defaultValue="mine" fitted w="full" lazyMount>
             <Tabs.List>
               <Tabs.Trigger value="mine">My list</Tabs.Trigger>
               <Tabs.Trigger value="everyone">Everyone</Tabs.Trigger>
