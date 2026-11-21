@@ -83,12 +83,6 @@ const ViewListPage = () => {
           loading={loading}
         />
       )}
-
-      <ul>
-        <li>slug: {slug}</li>
-        <li>me: {me}</li>
-        <li>mode: {mode}</li>
-      </ul>
     </Page>
   );
 };
