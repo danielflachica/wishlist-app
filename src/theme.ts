@@ -10,10 +10,10 @@ import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 const config = defineConfig({
   theme: {
     tokens: {
-      fonts: {
-        heading: { value: "'Bricolage Grotesque', system-ui, sans-serif" },
-        body: { value: "'Figtree', system-ui, sans-serif" },
-      },
+      // fonts: {
+      //   heading: { value: "'Bricolage Grotesque', system-ui, sans-serif" },
+      //   body: { value: "'Figtree', system-ui, sans-serif" },
+      // },
       colors: {
         // Green-tinted greys. Every default "gray" surface, border and text
         // colour in Chakra picks these up, so outline buttons, inputs and
