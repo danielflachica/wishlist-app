@@ -2,7 +2,7 @@ import useWishlist from "@/hooks/useWishlist";
 import type { NewItem } from "@/types/Item";
 import { Badge, Button, Field, Input, Stack } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const AddWishForm = () => {
   const { user } = useParams();
@@ -13,6 +13,7 @@ const AddWishForm = () => {
     reset,
     formState: { errors },
   } = useForm<NewItem>();
+  const navigate = useNavigate();
 
   const onCreate = (data: NewItem) => {
     const newItem: NewItem = {
@@ -22,6 +23,7 @@ const AddWishForm = () => {
     };
     addItem(newItem);
     reset();
+    navigate(`/u/${user}`);
   };
 
   return (
