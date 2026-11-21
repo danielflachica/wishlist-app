@@ -60,6 +60,10 @@ const InstallPage = () => {
 
   return (
     <Page title="Add to home screen">
+      <Button variant="outline" w="full" onClick={() => navigate(-1)}>
+        Back to my list
+      </Button>
+
       <Text>
         Save your wishlist to your iPhone's home screen so it opens in one tap.
       </Text>
@@ -88,7 +92,7 @@ const InstallPage = () => {
         ))}
       </Stack>
 
-      <Alert.Root status="info" variant="surface">
+      <Alert.Root status="neutral" variant="surface">
         <Alert.Indicator />
         <Alert.Content>
           <Alert.Description>
@@ -98,10 +102,6 @@ const InstallPage = () => {
           </Alert.Description>
         </Alert.Content>
       </Alert.Root>
-
-      <Button variant="outline" w="full" onClick={() => navigate(-1)}>
-        Back to my list
-      </Button>
     </Page>
   );
 };
