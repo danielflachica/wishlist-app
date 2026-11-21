@@ -87,7 +87,7 @@ const EditWishForm = () => {
       <DeleteWishForm
         id={parseInt(id ?? "")}
         user={user ?? ""}
-        btnText="Delete Wish"
+        btnText="Delete wish"
       ></DeleteWishForm>
     </>
   );
