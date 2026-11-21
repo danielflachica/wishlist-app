@@ -2,7 +2,6 @@ import BackButton from "@/components/BackButton";
 import Page from "@/components/Page";
 import { Alert, Circle, HStack, Stack, Text } from "@chakra-ui/react";
 import type { ReactNode } from "react";
-import { useNavigate } from "react-router";
 
 interface Step {
   title: string;
@@ -57,8 +56,6 @@ const STEPS: Step[] = [
 ];
 
 const InstallPage = () => {
-  const navigate = useNavigate();
-
   return (
     <Page title="Add to home screen">
       <BackButton />
