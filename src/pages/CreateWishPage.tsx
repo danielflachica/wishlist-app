@@ -4,11 +4,11 @@ import Page from "@/components/Page";
 import useListContext from "@/hooks/useListContext";
 
 const CreateWishPage = () => {
-  const { slug, me, mode } = useListContext();
+  const { me } = useListContext();
 
   return (
     <Page title="Add a wish">
-      <BackButton to={me ?? ""} />
+      <BackButton slug={me} />
       <AddWishForm />
     </Page>
   );

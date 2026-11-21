@@ -1,5 +1,6 @@
+import BackButton from "@/components/BackButton";
 import Page from "@/components/Page";
-import { Alert, Button, Circle, HStack, Stack, Text } from "@chakra-ui/react";
+import { Alert, Circle, HStack, Stack, Text } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import { useNavigate } from "react-router";
 
@@ -60,9 +61,7 @@ const InstallPage = () => {
 
   return (
     <Page title="Add to home screen">
-      <Button variant="outline" w="full" onClick={() => navigate(-1)}>
-        Back to my list
-      </Button>
+      <BackButton />
 
       <Text>
         Save your wishlist to your iPhone's home screen so it opens in one tap.

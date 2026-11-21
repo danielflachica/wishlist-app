@@ -70,7 +70,7 @@ const ViewListPage = () => {
 
       {mode === "viewer" && (
         <>
-          <BackButton to={me ?? ""} />
+          <BackButton slug={me} />
           <WishList
             items={items}
             owner={slug ?? ""}

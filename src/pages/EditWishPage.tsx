@@ -8,7 +8,7 @@ const EditWishPage = () => {
 
   return (
     <Page title="Edit wish">
-      <BackButton to={me ?? ""} />
+      <BackButton slug={me} />
       <EditWishForm />
     </Page>
   );

@@ -1,16 +1,25 @@
 import { Button } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router";
+import { Link as RouterLink, useNavigate } from "react-router";
 
 interface Props {
-  to: string;
+  slug?: string | null;
 }
 
-const BackButton = ({ to }: Props) => {
+const BackButton = ({ slug }: Props) => {
+  const navigate = useNavigate();
+  const LABEL = "Back to my list";
+
+  if (slug) {
+    return (
+      <Button asChild w="full" variant="outline">
+        <RouterLink to={`/u/${slug}`}>{LABEL}</RouterLink>
+      </Button>
+    );
+  }
+
   return (
-    <Button asChild w="full" variant="outline">
-      <RouterLink to={`${window.location.origin}/u/${to}`}>
-        Back to my list
-      </RouterLink>
+    <Button w="full" variant="outline" onClick={() => navigate(-1)}>
+      {LABEL}
     </Button>
   );
 };
