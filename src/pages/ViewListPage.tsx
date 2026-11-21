@@ -5,7 +5,7 @@ import WishList from "@/components/WishList";
 import useListContext from "@/hooks/useListContext";
 import useWishlist from "@/hooks/useWishlist";
 import { extractNameFromSlug, handleShareClick } from "@/utils/utils";
-import { Button, Tabs } from "@chakra-ui/react";
+import { Button, HStack, Tabs } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router";
 
 const ViewListPage = () => {
@@ -21,13 +21,19 @@ const ViewListPage = () => {
     >
       {mode === "owner" && (
         <>
-          <Button
-            w="full"
-            variant="outline"
-            onClick={() => handleShareClick(slug ?? "")}
-          >
-            Share my list
-          </Button>
+          <HStack w="full" gap="3">
+            <Button
+              flex="1"
+              variant="outline"
+              onClick={() => handleShareClick(slug ?? "")}
+            >
+              Share my list
+            </Button>
+
+            <Button asChild flex="1" variant="outline">
+              <RouterLink to="/install">Add to home screen</RouterLink>
+            </Button>
+          </HStack>
 
           <Tabs.Root
             defaultValue="mine"
