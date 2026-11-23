@@ -41,20 +41,6 @@ const AddWishForm = () => {
           </Field.ErrorText>
         </Field.Root>
 
-        <Field.Root invalid={!!errors.link}>
-          <Field.Label>
-            Link
-            <Field.RequiredIndicator
-              fallback={
-                <Badge size="xs" variant="surface">
-                  Optional
-                </Badge>
-              }
-            />
-          </Field.Label>
-          <Input {...register("link")} placeholder="shopee.com/socks" />
-        </Field.Root>
-
         <Field.Root invalid={!!errors.note}>
           <Field.Label>
             Note
@@ -67,6 +53,20 @@ const AddWishForm = () => {
             />
           </Field.Label>
           <Input {...register("note")} placeholder="Navy or white" />
+        </Field.Root>
+
+        <Field.Root invalid={!!errors.link}>
+          <Field.Label>
+            Link
+            <Field.RequiredIndicator
+              fallback={
+                <Badge size="xs" variant="surface">
+                  Optional
+                </Badge>
+              }
+            />
+          </Field.Label>
+          <Input {...register("link")} placeholder="shopee.com/socks" />
         </Field.Root>
 
         <Button type="submit">Add wish</Button>
