@@ -1,5 +1,6 @@
 import type { Mode } from "@/types/Mode";
 import {
+  Badge,
   Box,
   Button,
   Heading,
@@ -19,9 +20,17 @@ interface Props {
   mode: Mode;
   loading: boolean;
   onDelete?: (id: number) => void;
+  onClaim?: (id: number) => void;
 }
 
-const WishList = ({ items, owner, mode, loading, onDelete }: Props) => {
+const WishList = ({
+  items,
+  owner,
+  mode,
+  loading,
+  onDelete,
+  onClaim,
+}: Props) => {
   const navigate = useNavigate();
 
   const handleClick = (id: number) => {
@@ -35,9 +44,15 @@ const WishList = ({ items, owner, mode, loading, onDelete }: Props) => {
       {loading && <WishListSkeleton />}
 
       {items.map((wish) => (
-        <Box key={owner + wish.id} p={4} borderWidth="1px" borderRadius="md">
+        <Box
+          key={owner + wish.id}
+          p={4}
+          borderWidth="1px"
+          borderRadius="md"
+          opacity={wish.is_claimed && mode === "viewer" ? 0.6 : 1}
+        >
           <Stack>
-            <HStack justifyContent="space-between" align="flex-start" w="full">
+            <HStack justifyContent="space-between" align="center" w="full">
               <Heading size="md" fontWeight="bold">
                 {wish.item}
               </Heading>
@@ -65,6 +80,23 @@ const WishList = ({ items, owner, mode, loading, onDelete }: Props) => {
                     </Button>
                   )}
                 </HStack>
+              )}
+              {mode === "viewer" && !wish.is_claimed && onClaim && (
+                <Button
+                  type="button"
+                  size="xs"
+                  variant="solid"
+                  onClick={() => {
+                    onClaim(wish.id);
+                  }}
+                >
+                  Get
+                </Button>
+              )}
+              {mode === "viewer" && wish.is_claimed && (
+                <Badge bg="gray.200" variant="surface">
+                  Claimed
+                </Badge>
               )}
             </HStack>
             {wish.note && (

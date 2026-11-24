@@ -60,7 +60,17 @@ const useWishlist = (owner: string) => {
     }
   };
 
-  return { items, error, loading, addItem, removeItem };
+  const claimItem = async (id: number): Promise<boolean> => {
+    try {
+      const claimed = await wishlistService.claim(id);
+      setItems((prev) => prev.map((i) => (i.id === claimed.id ? claimed : i)));
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  return { items, error, loading, addItem, removeItem, claimItem };
 };
 
 export default useWishlist;

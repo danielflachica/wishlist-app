@@ -58,6 +58,18 @@ class SupabaseService<TApp extends Item> {
     return data;
   }
 
+  async claim(id: number): Promise<TApp> {
+    const { data, error } = await supabase
+      .from(this.table)
+      .update({ is_claimed: true })
+      .eq("id", id)
+      .eq("is_claimed", false)
+      .select()
+      .single();
+    if (error) throw error;
+    return data;
+  }
+
   async delete(id: number): Promise<void> {
     const { error, count } = await supabase
       .from(this.table)

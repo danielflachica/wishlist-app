@@ -11,7 +11,9 @@ import ErrorPage from "./ErrorPage";
 
 const ViewListPage = () => {
   const { slug, me, mode } = useListContext();
-  const { items, error, loading, removeItem } = useWishlist(slug ?? "");
+  const { items, error, loading, removeItem, claimItem } = useWishlist(
+    slug ?? "",
+  );
   const userName = extractNameFromSlug(slug);
 
   if (error) return <ErrorPage />;
@@ -69,6 +71,7 @@ const ViewListPage = () => {
             owner={slug ?? ""}
             mode={mode}
             loading={loading}
+            onClaim={claimItem}
           />
         </>
       )}
